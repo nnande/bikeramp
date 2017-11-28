@@ -7,3 +7,7 @@ gem 'rails', '5.1.0'
 gem 'pg'
 
 gem 'spring', group: :development
+
+group :development, :test do
+  gem 'awesome_print'
+end
