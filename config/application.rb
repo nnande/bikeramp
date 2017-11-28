@@ -12,6 +12,15 @@ Bundler.require(*Rails.groups)
 
 module Bikeramp
   class Application < Rails::Application
+    REDUNDANT_MIDDLEWARES = [
+      Rack::Sendfile,
+      ActionDispatch::Static,
+      ActionDispatch::RequestId,
+      ActionDispatch::RemoteIp,
+      ActionDispatch::DebugExceptions,
+      Rack::Head,
+    ].freeze
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
@@ -23,5 +32,8 @@ module Bikeramp
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # We do not need these middlewares in the application
+    REDUNDANT_MIDDLEWARES.each { |klass| config.middleware.delete klass }
   end
 end
