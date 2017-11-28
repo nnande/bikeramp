@@ -6,11 +6,9 @@ ruby '2.3.1'
 gem 'rails', '5.1.0'
 gem 'pg'
 
-gem 'spring', group: :development
-
-group :development, :test do
-  gem 'awesome_print'
-  gem 'pry'
+group :development do
+  gem 'spring'
+  gem 'listen'
 end
 
 group :test do
@@ -19,4 +17,9 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers'
+end
+
+group :development, :test do
+  gem 'awesome_print'
+  gem 'pry'
 end
