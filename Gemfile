@@ -10,4 +10,5 @@ gem 'spring', group: :development
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'pry'
 end
