@@ -16,4 +16,5 @@ end
 group :test do
   gem 'vcr'
   gem 'rspec-rails'
+  gem 'database_cleaner'
 end
