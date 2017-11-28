@@ -13,4 +13,7 @@ group :development, :test do
   gem 'pry'
 end
 
-gem 'vcr', group: :test 
+group :test do
+  gem 'vcr'
+  gem 'rspec-rails'
+end
