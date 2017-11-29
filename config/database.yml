@@ -15,7 +15,8 @@ test:
   <<: *default
   database: bikeramp_test
   host: localhost
-  username: postgres
+  username: test_user
+  password: test123
 
 production:
   <<: *default
