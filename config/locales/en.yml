@@ -30,4 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  errors:
+    gistance:
+      no_result_data: Google Distance MATRIX API could not respond properly to the provided data
+
