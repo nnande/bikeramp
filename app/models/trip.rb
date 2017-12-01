@@ -5,4 +5,13 @@ class Trip < ApplicationRecord
 	validates :price, :date, :distance, :start_address, :destination_address, presence: true
 	validates :price, :distance, numericality: true
 	validates_associated :start_address, :destination_address
+	
+	before_save :provide_distance
+
+	private
+
+	def provide_distance
+		svc = DistanceProvider.new(self); svc.call
+		self.distance = svc.distance_in_kilometers
+	end
 end
