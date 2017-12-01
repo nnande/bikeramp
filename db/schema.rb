@@ -10,16 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201071844) do
+ActiveRecord::Schema.define(version: 20171201201101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "line", null: false
+    t.string "city", null: false
+    t.string "country", null: false
+  end
 
   create_table "trips", force: :cascade do |t|
     t.decimal "price", precision: 5, scale: 2, null: false
     t.datetime "date", null: false
     t.decimal "distance", precision: 5, scale: 2, null: false
+    t.integer "start_address_id"
+    t.integer "destination_address_id"
     t.index ["date"], name: "index_trips_on_date"
+    t.index ["destination_address_id"], name: "index_trips_on_destination_address_id"
+    t.index ["start_address_id"], name: "index_trips_on_start_address_id"
   end
 
+  add_foreign_key "trips", "addresses", column: "destination_address_id"
+  add_foreign_key "trips", "addresses", column: "start_address_id"
 end
