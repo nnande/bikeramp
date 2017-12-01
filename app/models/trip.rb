@@ -7,7 +7,16 @@ class Trip < ApplicationRecord
 	validates_associated :start_address, :destination_address
 	
 	before_save :provide_distance
+	
+	scope :from_current_week, lambda { 
+				      where('date >= ?', Time.current.beginning_of_week)
+                                     .where('date <= ?', Time.current)
+				  }
 
+	scope :from_current_month, lambda {
+				      where('date >= ?', Time.current.beginning_of_month)
+				     .where('date <= ?', Time.current)
+			          }
 	private
 
 	def provide_distance
