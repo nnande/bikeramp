@@ -8,4 +8,12 @@ RSpec.describe Address, type: :model do
 			end
 		end
 	end
+
+	describe '#full' do
+		subject { build(:address) }
+
+		it 'retrns line, city and country joined with comma' do
+			expect(subject.full).to eq('Plac Europejski 2, Warszawa, Polska')
+		end
+	end
 end
