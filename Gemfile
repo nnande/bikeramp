@@ -5,6 +5,7 @@ ruby '2.3.4'
 
 gem 'rails', '5.1.0'
 gem 'pg'
+gem 'gistance', github: 'nnande/gistance'
 
 group :development do
   gem 'spring'
