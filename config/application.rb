@@ -35,5 +35,7 @@ module Bikeramp
 
     # We do not need these middlewares in the application
     REDUNDANT_MIDDLEWARES.each { |klass| config.middleware.delete klass }
+
+    config.autoload_paths << Rails.root.join('app', 'queries')
   end
 end
