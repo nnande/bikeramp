@@ -13,6 +13,7 @@ RSpec.describe Trip, type: :model do
 				it { is_expected.to validate_numericality_of(attribute) }
 			end
 		end
+
 	end
 	
 	context 'associations' do

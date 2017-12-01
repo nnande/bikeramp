@@ -4,4 +4,5 @@ class Trip < ApplicationRecord
 
 	validates :price, :date, :distance, :start_address, :destination_address, presence: true
 	validates :price, :distance, numericality: true
+	validates_associated :start_address, :destination_address
 end
