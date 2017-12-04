@@ -35,3 +35,6 @@ en:
       no_result_data: Google Distance MATRIX API could not respond properly to the provided data
     presenters:
       invalid_object_type: Invalid object type passed
+    schemas:
+      trip:
+        address: "%{kind}_address is not valid"
