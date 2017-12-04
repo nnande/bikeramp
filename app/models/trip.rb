@@ -6,8 +6,11 @@ class Trip < ApplicationRecord
 	validates :price, :distance, numericality: true
 	validates_associated :start_address, :destination_address
 	
-	before_save :provide_distance
-	
+	before_validation :provide_distance
+		
+	accepts_nested_attributes_for :start_address
+	accepts_nested_attributes_for :destination_address
+
 	scope :from_current_week, lambda { 
 				      where('date >= ?', Time.current.beginning_of_week)
                                      .where('date <= ?', Time.current)
