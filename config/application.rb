@@ -37,7 +37,7 @@ module Bikeramp
     REDUNDANT_MIDDLEWARES.each { |klass| config.middleware.delete klass }
 	
     %w[queries presenters schemas].each do |dir|
-    	config.autoload_paths << Rails.root.join('app', dir)
+      config.autoload_paths << Rails.root.join('app', dir)
     end
   end
 end

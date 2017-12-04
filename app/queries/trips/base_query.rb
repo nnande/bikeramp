@@ -1,9 +1,9 @@
 module Trips
-	class BaseQuery < ::BaseQuery
-		private
+  class BaseQuery < ::BaseQuery
+  private
 
-		def klass
-			Trip
-		end
-	end
+  def klass
+    Trip
+  end
+  end
 end

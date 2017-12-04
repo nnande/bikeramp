@@ -1,16 +1,16 @@
 class BaseQuery
-	def all
-		klass.public_send(self.class::SCOPE)
-		     .public_send(:select, params)
-	end
+  def all
+    klass.public_send(self.class::SCOPE)
+         .public_send(:select, params)
+  end
 	
-	private
+  private
 
-	def klass
-		raise NotImplementedError
-	end
+  def klass
+    raise NotImplementedError
+  end
 
-	def params
-		raise NotImplementedError
-	end
+  def params
+    raise NotImplementedError
+  end
 end

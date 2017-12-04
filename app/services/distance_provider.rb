@@ -1,37 +1,34 @@
 class DistanceProvider
-	class Gistance::NoResultDataError < StandardError; end
+  class Gistance::NoResultDataError < StandardError; end
 
-	attr_reader :distance_in_kilometers
+  attr_reader :distance_in_kilometers
 	
-	def initialize(trip)
-		@trip = trip
-		@client = Gistance
-	end
+  def initialize(trip)
+    @trip = trip
+    @client = Gistance
+  end
 
-	def call
-		@distance_in_kilometers = distance
-	end
+  def call	
+    @distance_in_kilometers = distance
+  end
 
-	private
-	
-	def distance
-		response = @client.distance_matrix(options)[:rows][0][:elements][0]
-		
-		if response.empty?
-			raise Gistance::NoResultDataError I18n.t(:no_result_data, scope: [:errors, :gistance])
-		end
+  private
 
-		response[:distance][:value].to_d / 1000
-	end
+  def distance
+    response = @client.distance_matrix(options)[:rows][0][:elements][0]		
+    raise Gistance::NoResultDataError I18n.t(:no_result_data, scope: [:errors, :gistance]) if response.empty?
 
-	def options
-		{
-			origins: [trip_address(:start)],
-			destinations: [trip_address(:destination)]
-		}
-	end
+    response[:distance][:value].to_d / 1000
+  end
 
-	def trip_address(kind)
-		@trip.public_send("#{kind}_address").full
-	end
-end
+  def options
+    {
+      origins: [trip_address(:start)],
+      destinations: [trip_address(:destination)]
+    } 
+  end
+
+  def trip_address(kind)
+    @trip.public_send("#{kind}_address").full
+  end
+ end
